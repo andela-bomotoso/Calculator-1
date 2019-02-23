@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final ArrayList<String> mathCalc = new ArrayList<String>();
+        //final ArrayList<String> mathCalc = new ArrayList<String>();
 
 
 
@@ -57,51 +57,148 @@ public class MainActivity extends AppCompatActivity {
 
         mUserEntryView = (TextView) findViewById(R.id.user_entry);
 
-        mUserEntryView.setText(R.string.zero);
+        //mUserEntryView.setText(R.string.zero);
 
         mUserResultsView = (TextView) findViewById(R.id.user_results);
 
         mClearButton = (Button) findViewById(R.id.clearButton);
-        mClearButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mUserEntryView.setText(getString(R.string.zero));
-                mUserResultsView.setText(getString(R.string.zero));
-            }
-        });
+
+
 
         mOpenParenthButton = (Button) findViewById(R.id.open_parenth);
 
-        mOpenParenthButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mathCalc.add(getString(R.string.openParenth));
-
-                mUserEntryView.setText(mathCalc.toString());
-            }
-        });
 
         mClosedParenthButton = (Button) findViewById(R.id.closed_parenth);
 
-        mClosedParenthButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mathCalc.add(getString(R.string.closedParenth));
-                mUserEntryView.setText(mathCalc.toString());
-            }
-        });
+
+    }
+
+    public void display(View view) {
+
+        switch (view.getId()) {
+
+            case R.id.oneButton:
+                updateWorkArea('1');
+
+                break;
+
+
+
+            case R.id.twoButton:
+                updateWorkArea('2');
+
+                break;
+
+            case R.id.threeButton:
+                updateWorkArea('3');
+
+                break;
+
+            case R.id.fourButton:
+                updateWorkArea('4');
+
+                break;
+
+            case R.id.fiveButton:
+                updateWorkArea('5');
+
+                break;
+
+
+            case R.id.sixButton:
+                updateWorkArea('6');
+
+                break;
+
+            case R.id.sevenButton:
+                updateWorkArea('7');
+
+                break;
+
+
+            case R.id.eightButton:
+                updateWorkArea('8');
+
+                break;
+
+            case R.id.nineButton:
+                updateWorkArea('9');
+
+                break;
+
+            case R.id.open_parenth:
+                updateWorkArea('(');
+
+                break;
+
+
+            case R.id.closed_parenth:
+                updateWorkArea(')');
+
+                break;
+            case R.id.clearButton:
+                clearWorkArea();
+
+                break;
+
+            case R.id.additionButton:
+                updateWorkArea('+');
+
+                break;
+
+            case R.id.subtractButton:
+                updateWorkArea('-');
+
+                break;
+
+            case R.id.slashButton:
+                updateWorkArea('/');
+
+                break;
+
+            case R.id.multiplierButton:
+                updateWorkArea('*');
+
+                break;
+
+            case R.id.decimalButton:
+                updateWorkArea('.');
+
+                break;
+
+            case R.id.equalButton:
+                updateWorkArea('=');
+
+                break;
+
+
+            case R.id.backSpaceButton:
+                deleteCurrentText();
+
+                break;
 
 
 
 
 
 
+        }
+    }
 
+    private void updateWorkArea(char buttonText) {
+        String currentText = mUserEntryView.getText().toString();
+        mUserEntryView.setText(currentText + " " + buttonText);
 
+    }
 
+    private void clearWorkArea() {
+        mUserEntryView.setText("");
+    }
 
-
-
+    private void deleteCurrentText() {
+        String textToBeDeleted = mUserEntryView.getText().toString();
+        String currentText = textToBeDeleted.substring(0, textToBeDeleted.length() -2);
+        mUserEntryView.setText(currentText);
 
     }
 }
