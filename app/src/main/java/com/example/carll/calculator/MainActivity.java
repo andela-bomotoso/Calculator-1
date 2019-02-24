@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    private Calculator calculator;
 
 
     private Button mClearButton;
@@ -40,10 +41,14 @@ public class MainActivity extends AppCompatActivity {
     private TextView mUserEntryView;
     private TextView mUserResultsView;
 
+    Float mValueOne, mValueTwo;
+    Boolean mAddition, mSubtraction, mDivision, mMultiplication;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        calculator = new Calculator("",0);
 
         //final ArrayList<String> mathCalc = new ArrayList<String>();
 
@@ -188,6 +193,9 @@ public class MainActivity extends AppCompatActivity {
     private void updateWorkArea(char buttonText) {
         String currentText = mUserEntryView.getText().toString();
         mUserEntryView.setText(currentText + " " + buttonText);
+        calculator.setExpression(currentText + buttonText);
+        calculator.calculate(currentText + buttonText);
+        mUserResultsView.setText(Double.toString(calculator.getResults()));
 
     }
 
@@ -201,4 +209,10 @@ public class MainActivity extends AppCompatActivity {
         mUserEntryView.setText(currentText);
 
     }
+
+    //private void calculateTotals() {
+
+    //    String numbersToCalculate = mUserEntryView.getText().toString();
+
+  //  }
 }
