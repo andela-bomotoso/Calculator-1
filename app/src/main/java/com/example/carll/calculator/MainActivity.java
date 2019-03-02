@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateWorkArea(char buttonText) {
         String currentText = mUserEntryView.getText().toString();
-        mUserEntryView.setText(currentText + " " + buttonText);
+        mUserEntryView.setText(currentText + buttonText);
         calculator.setExpression(currentText + buttonText);
         calculator.calculate(currentText + buttonText);
         mUserResultsView.setText(Double.toString(calculator.getResults()));

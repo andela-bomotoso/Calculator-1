@@ -39,7 +39,7 @@ public class Calculator {
 
          } else {
              currentOperand += token;
-             updateResult(currentValue, currentOperator, currentOperand);
+             currentValue = updateResult(currentValue, currentOperator, currentOperand);
          }
 
 
@@ -68,6 +68,8 @@ public class Calculator {
             case '-':
                 currentValue -= operand;
                 break;
+                default:
+                    currentValue = operand;
 
         }
         return currentValue;
